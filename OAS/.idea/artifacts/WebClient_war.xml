@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="WebClient:war">
+    <output-path>$PROJECT_DIR$/out/artifacts/WebClient_war</output-path>
+    <root id="archive" name="WebClient_war.war">
+      <element id="artifact" artifact-name="WebClient:war exploded" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="OAS" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

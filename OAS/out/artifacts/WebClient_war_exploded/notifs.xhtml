@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+
+<h:head>
+    #{user.retrieveNotifications()}
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+    <title>OAS</title>
+    <link rel="icon" href="./icons/favicon.ico" type="image/x-icon"/>
+
+    <!-- bootstrap -->
+    <link href="./css/bootstrap.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <h:outputScript name="js/jquery.js" />
+    <h:outputScript name="js/bootstrap.js" />
+
+    <!-- styles goes here -->
+    <link href="css/notifs.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="css/footer.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <style type="text/css">
+        .new{background-color: #F5F5F5;/**D7D9E0 */}
+        .seen{background-color: white;}
+        .picture{background-image: url('/icons/logo.png');}
+        .homeIcon{background-image: url('/icons/home.png');}
+        .userIcon{background-image: url('/icons/user.png');}
+        .notifsIcon{background-image: url('/icons/notifs.png');}
+    </style>
+</h:head>
+
+<body >
+
+<div class="navbar navbar-bootsnipp no-margin bg-header">
+    <div class="container">
+
+        <div class="navbar-header">
+            <div class="animbrand">
+                <a class="navbar-brand animate" href=""><strong class="white">Online Auction</strong></a>
+            </div>
+        </div>
+        <div>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="index.xhtml" class="bl"><span class="myIcon glyphicon homeIcon"></span></a></li>
+                <c:choose>
+                    <c:when test="#{user.isLoginStatus}">
+                        <li><a class="bl pointer"><span>$ </span>#{user.accountBalance}</a></li>
+                        <li><a href="" class="bl"><span class="myIcon glyphicon userIcon"></span></a></li>
+                        <li><a href="notifs.xhtml" class="bl"><span class="myIcon glyphicon notifsIcon"></span></a></li>
+                    </c:when>
+                    <c:otherwise>
+                        <li><a href="login.xhtml" class="bl">Login</a></li>
+                    </c:otherwise>
+                </c:choose>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div class="container containerActivity">
+    <h:outputLabel value="#{user.retrieveNotifications()}"/>
+    <c:choose>
+        <c:when test="#{user.notifications != null and !user.notifications.isEmpty()}">
+            <c:forEach var="notification" items="#{user.notifications}">
+                <div class="notifs #{notification.seen ? 'seen' : 'new'}">
+                    <div class="picture"></div>
+
+                    <div class="bl"><h:outputText value="#{notification.context}"/></div>
+                    <div class="time"><h:outputText value="#{notification.date}"/></div>
+                </div>
+            </c:forEach>
+        </c:when>
+        <c:otherwise>
+            <div class="text-center">
+                <h:outputText styleClass="bl" value="No Notification To Show"/>
+            </div>
+        </c:otherwise>
+    </c:choose>
+</div>
+
+
+
+<div class="container-brand-dark">
+    <div class="page-container-responsive">
+
+        <div class="row row-condensed">
+
+            <div class="col-md-2 col-md-offset-3 hide-sm">
+                <h2 class="h5">Company</h2>
+                <ul class="list-layout">
+                    <li><a href="" class="link-contrast">About</a></li>
+                    <li><a href="" class="link-contrast">Help</a></li>
+                    <li><a href="" class="link-contrast">Policies</a></li>
+                    <li><a href="" class="link-contrast">Terms &amp; Privacy</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-2 hide-sm">
+                <h2 class="h5">Discover</h2>
+                <ul class="list-layout">
+                    <li><a href="" class="link-contrast">Trust &amp; Safety</a></li>
+                    <li><a href="" class="link-contrast">Mobile</a></li>
+                    <li><a href="" class="link-contrast">Site Map</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-2 hide-sm">
+                <h2 class="h5">Auction Matters</h2>
+                <ul class="list-layout">
+                    <li><a href="" class="link-contrast">Benefits of Auction</a></li>
+                    <li><a href="" class="link-contrast">Auction Inspiration</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-sm-12 space-4 space-top-4 show-sm">
+            <ul class="list-layout list-inline text-center h5">
+                <li><a href="" class="link-contrast">About</a></li>
+                <li><a href="" class="link-contrast">Help</a></li>
+                <li><a href="" class="link-contrast">Policies</a></li>
+                <li><a href="" class="link-contrast">Mobile</a></li>
+                <li><a href="" class="link-contrast">Terms &amp; Privacy</a></li>
+            </ul>
+        </div>
+
+        <hr class="footer-divider space-top-3 space-4 hide-sm"></hr>
+
+        <div class="text-center">
+            <h2 class="h5 space-4 hide-sm">Follow Sport Store</h2>
+            <ul class="list-layout list-inline">
+                <li>
+                    <a href="" class="link-contrast footer-icon-container" itemprop="sameAs" target="_blank">
+                        <span class="screen-reader-only">Facebook</span>
+                        <i class="icon footer-icon icon-facebook"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="link-contrast footer-icon-container" itemprop="sameAs" target="_blank">
+                        <span class="screen-reader-only">Twitter</span>
+                        <i class="icon footer-icon icon-twitter"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="link-contrast footer-icon-container" itemprop="sameAs" target="_blank">
+                        <span class="screen-reader-only">YouTube</span>
+                        <i class="icon footer-icon icon-youtube"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="link-contrast footer-icon-container" itemprop="sameAs" target="_blank">
+                        <span class="screen-reader-only">Instagram</span>
+                        <i class="icon footer-icon icon-instagram"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="link-contrast footer-icon-container" itemprop="sameAs" target="_blank">
+                        <span class="screen-reader-only">VK</span>
+                        <i class="icon footer-icon icon-vk"></i>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="space-top-2 text-muted">&copy; Online Auction, Inc.</div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
+

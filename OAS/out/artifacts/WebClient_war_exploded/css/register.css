@@ -1,0 +1,14 @@
+a, a:hover{color: #5FB0E4}
+@font-face {font-family: Ebrima; font-weight:700; font-style:normal}
+body {padding-top: 10px; background: #2b2d2e; height: 679px; background-size:cover; position:relative; color: #ffffff; letter-spacing: .05em; font-family: Ebrima, 'National Light', "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif}
+.form-signIn { max-width: 400px; padding: 10px; margin: 0 auto; opacity: 1}
+.form-signIn .form-control { position: relative; height: auto; padding: 10px; font-size: 16px; background-color: #fff; border: none}
+.form-signIn input[type="email"], .form-signIn input[type="text"], .form-signIn input[type="password"], .form-signIn input[type="tel"]{ height: 45px; border-radius: 0; -webkit-border-radius: 0; -moz-border-radius: 0}
+.form-signIn .btn{ border-radius: 2px; -webkit-border-radius: 2px; -moz-border-radius: 2px}
+.btn-login, .btn-signUp{ background-color: #5FB0E4; border: none;color: #fff}
+.btn-login:hover, .btn-signUp:hover, .btn-login:active, .btn-signUp:active{color: lightgray}
+.c-blue{color: #5FB0E4}
+.space-top-8{margin-top:50px}
+.footer-divider{border-color:#5FB0E4}
+.space-top-1{margin-top: 1em}
+.space-top-2{margin-top: 2em}

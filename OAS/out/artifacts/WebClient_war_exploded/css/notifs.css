@@ -1,0 +1,15 @@
+/*Notification page*/
+.myIcon{display: inline-block;overflow: hidden;color: transparent;font-family: sans-serif;width: 16px;height: 16px;background-position: center center;background-repeat: no-repeat;background-size: cover;}
+html {zoom: 0.9; -ms-zoom: 0.9; -webkit-zoom: 0.9}
+.white {color: #ffffff}
+.bl {color: #5FB0E4}
+.no-margin{margin: 0}
+.pointer {cursor: pointer}
+.bg-header{background-color: #2b2d2e}
+.containerActivity {min-height: 670px; margin-top: 30px; padding: 10px}
+/**Notification*/
+.notifs{max-width: 500px; border: 1px solid #D0D1D5; margin: 0 auto 20px auto; padding: 10px 10px 13px 70px; position: relative; text-align: center;  /*optional */}
+.picture{height:50px; width:50px;float:left; position: absolute; left: 10px; top: 10px;}
+.time{text-align:right; margin-top: 10px; color:#9197A3; font-size: 12px; bottom: -11px; position: relative;}
+.status{ color:#9197A3; top: -9px; position: relative; font-size: 12px;}
+.bg-gray{background-color: lightgray;}

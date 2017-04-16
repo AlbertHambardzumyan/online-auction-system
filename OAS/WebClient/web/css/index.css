@@ -1,0 +1,29 @@
+.myIcon{display: inline-block;overflow: hidden;color: transparent;font-family: sans-serif;width: 16px;height: 16px;background-position: center center;background-repeat: no-repeat;background-size: cover;}
+html {zoom: 0.9; -ms-zoom: 0.9; -webkit-zoom: 0.9}
+.bl {color: #5FB0E4}
+.white {color: #ffffff}
+.no-margin{margin: 0}
+.pointer {cursor: pointer}
+/** Header  **/
+.bg-header{background-color: #2b2d2e}
+/** Search */
+.searchContainer{ margin-top: 20px !important;}
+.select {position: relative; display: inline-block; vertical-align: bottom;}
+.select-large select {padding-top: 10px;padding-bottom: 10px;}
+select {border: 1px solid #5FB0E4;color: #5FB0E4;}
+select {line-height: normal;}
+select, .input-prefix, .input-suffix {display: block;padding: 8px 10px;width: 100%;}
+.select-block {display: block;width: 100% ;}
+.select-large {font-size: 16px;}
+.btn-blue {background-color: #5FB0E4; color: #fff}
+.btn-blue:hover {color: lightgray}
+.btn-blue:focus {color: #fff}
+/**Auction */
+.containerActivity {min-height: 624px; margin-top: 10px;}
+.items li {border: 1px solid #c6c5c5; min-height: 300px; overflow: hidden; padding: 10px 7px; width: 100%; display: inline-block;margin: 2px}
+
+
+
+
+
+

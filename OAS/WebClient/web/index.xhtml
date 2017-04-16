@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+    <title>OAS</title>
+    <link rel="icon" href="./icons/favicon.ico" type="image/x-icon"/>
+
+    <!-- bootstrap -->
+    <link href="./css/bootstrap.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <h:outputScript name="js/jquery.js" />
+    <h:outputScript name="js/bootstrap.js" />
+
+    <!-- styles goes here -->
+    <link href="css/index.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="css/footer.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="css/wave-effects.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+    <style type="text/css>">
+        .border{border: 1px solid gray; }
+    </style>
+</head>
+<body>
+<div class="navbar navbar-bootsnipp no-margin bg-header">
+    <div class="container">
+
+        <div class="navbar-header">
+            <div class="animbrand">
+                <a class="navbar-brand animate" href=""><strong class="white">Online Auction</strong></a>
+            </div>
+        </div>
+        <div>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="index.xhtml" class="bl"><span class="myIcon glyphicon homeIcon" style="background-image: url('/icons/home.png')"></span></a></li>
+                <c:choose>
+                    <c:when test="#{user.isLoginStatus}">
+                        <li><a class="bl pointer" id ="balance" ><span>$ </span>#{user.accountBalance}</a></li>
+                        <li><a href="" class="bl"><span class="myIcon glyphicon" style="background-image: url('/icons/user.png')"></span></a></li>
+                        <li><a href="notifs.xhtml" class="bl"><span class="myIcon glyphicon" style="background-image: url('/icons/notifs.png')"></span></a></li>
+                    </c:when>
+                    <c:otherwise>
+                        <li><a href="login.xhtml" class="bl">Login</a></li>
+                    </c:otherwise>
+                </c:choose>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div class="container searchContainer">
+    <div class="row row-condensed" style="margin: 0">
+        <h:form>
+            <div class="col-md-3 col-md-offset-7">
+                <div class="select select-large select-block">
+                    <h:selectOneMenu value="#{AuctionBean.selectedType}">
+                        <f:selectItems value="#{AuctionBean.searchTypes}" />
+                    </h:selectOneMenu>
+                </div>
+            </div>
+
+            <div class="col-md-2 col-md-offset-0">
+                 <h:commandButton styleClass="btn btn-lg btn-blue btn-block  waves-light" value="Search" action="#{AuctionBean.searchByType}"/>
+            </div>
+        </h:form>
+    </div>
+</div>
+
+
+<div class="containerActivity">
+    <div class="row row-condensed" style="margin: 0">
+        <div class="col-md-10 col-md-offset-1">
+            <c:choose>
+                <c:when test="#{AuctionBean.auctions != null and !AuctionBean.auctions.isEmpty()}">
+                    <ul class="list-layout items text-center">
+                        <c:forEach var="auction" items="#{AuctionBean.auctions}">
+                            <li>
+                                <div class="col-md-4 col-md-offset-0 border" style="padding: 0; color: #5FB0E4">
+                                    <h:outputText value="#{auction.item.name}"/><br/>
+                                    <div style="padding: 10px; width: 300px; height: 230px; margin: auto">
+                                        <img src="images/#{auction.item.url}.jpg" class="img-responsive" style="margin: auto" alt="#{auction.item.name}"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-8 col-md-offset-0 border" style="padding-bottom: 10px; color: #5FB0E4">
+                                    <h:outputText value="#{auction.item.description}"/>
+                                </div>
+                                <div class="col-md-8 col-md-offset-0 border" style="padding: 10px; border: 1px solid #c6c5c5;color: #5FB0E4">
+                                    <div class="col-md-6 col-md-offset-0 border" style="padding: 10px;">
+                                        <span>Starting Price: $</span><h:outputText value="#{auction.item.startingPrice}"/><br/>
+                                        <span>Condition: </span><h:outputText value="#{auction.item.condition}"/><br/>
+                                        <span>Country: </span><h:outputText value="#{auction.item.country}"/><br/>
+                                        <span>Type: </span><h:outputText value="#{auction.item.type}"/><br/>
+                                    </div>
+                                    <div class="col-md-6 col-md-offset-0 border" style="padding: 10px;color: #5FB0E4">
+                                        <span>Start Date: </span><h:outputText value="#{auction.startDate}"/><br/>
+                                        <span>Duration: </span><h:outputText value="#{auction.duration}"/><br/>
+                                        <span>Seller Id: </span><h:outputText value="#{auction.sellerId}"/><br/>
+                                    </div>
+
+
+                                    <div class="col-md-12 col-md-offset-0 border" style="padding: 10px;color: #5FB0E4">
+                                        <div class="col-md-4 col-md-offset-0 border" style="padding: 10px; border: 1px solid #c6c5c5">
+                                            <span style="font-weight: bold">Current Price: $</span><h:outputLabel value="#{auction.currentPrice}"/><br/>
+                                        </div>
+                                        <c:choose>
+                                            <c:when test="#{user.isLoginStatus}">
+                                                <h:form>
+                                                    <div class="col-md-4 col-md-offset-0 border" style="padding: 10px; color: #5FB0E4">
+                                                        <h:inputText styleClass="form-control text-center" value="#{bid.bidMoney}" p:placeholder="Bid Amount" required="true" requiredMessage="*Empty"/>
+                                                        <h:commandLink value="Bid"  action=" ">
+                                                            <f:setPropertyActionListener target="#{bid.auctionId}" value="#{auction.id}" />
+                                                            <f:setPropertyActionListener target="#{bid.customerID}" value="#{user.customerId}" />
+                                                            <f:setPropertyActionListener target="#{AuctionBean.auctionId}" value="#{auction.id}" />
+                                                            <f:actionListener binding="#{bid.bid()}"/>
+                                                            <f:actionListener binding="#{user.balance()}"/>
+                                                            <f:actionListener binding="#{AuctionBean.searchByType()}"/>
+                                                        </h:commandLink><br/>
+                                                    </div>
+                                                    <div class="col-md-4 col-md-offset-0 border" style="padding: 10px; border: 1px solid #c6c5c5;color: #5FB0E4">
+                                                        <span style="font-weight: bold">Remaining: $</span><h:outputLabel value="#{AuctionBean.remaining(user.customerId, auction.id)}"/>
+                                                    </div>
+
+                                                    <div class="col-md-12 col-md-offset-0 border" style="padding: 10px;">
+                                                        <h:outputLabel value="#{AuctionBean.status(user.customerId, auction.id)}"/><br/>
+                                                        <h:outputLabel value="#{AuctionBean.statusText(user.customerId, auction.id)}"/>
+                                                    </div>
+                                                </h:form>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <div class="col-md-12 col-md-offset-0 border" style="padding: 10px">
+                                                    <h:outputLabel value="Login To Be Able To Make Bid"/><br/>
+                                                </div>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </div>
+                                </div>
+                            </li>
+                        </c:forEach>
+                    </ul>
+                </c:when>
+                <c:otherwise>
+                    <div class="text-center">
+                        <h:outputText styleClass="bl" value="No Auction To Show"/>
+                    </div>
+                </c:otherwise>
+            </c:choose>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-brand-dark">
+    <div class="page-container-responsive">
+
+        <div class="row row-condensed">
+
+            <div class="col-md-2 col-md-offset-3 hide-sm">
+                <h2 class="h5">Company</h2>
+                <ul class="list-layout">
+                    <li><a href="" class="link-contrast">About</a></li>
+                    <li><a href="" class="link-contrast">Help</a></li>
+                    <li><a href="" class="link-contrast">Policies</a></li>
+                    <li><a href="" class="link-contrast">Terms &amp; Privacy</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-2 hide-sm">
+                <h2 class="h5">Discover</h2>
+                <ul class="list-layout">
+                    <li><a href="" class="link-contrast">Trust &amp; Safety</a></li>
+                    <li><a href="" class="link-contrast">Mobile</a></li>
+                    <li><a href="" class="link-contrast">Site Map</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-2 hide-sm">
+                <h2 class="h5">Auction Matters</h2>
+                <ul class="list-layout">
+                    <li><a href="" class="link-contrast">Benefits of Auction</a></li>
+                    <li><a href="" class="link-contrast">Auction Inspiration</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-sm-12 space-4 space-top-4 show-sm">
+            <ul class="list-layout list-inline text-center h5">
+                <li><a href="" class="link-contrast">About</a></li>
+                <li><a href="" class="link-contrast">Help</a></li>
+                <li><a href="" class="link-contrast">Policies</a></li>
+                <li><a href="" class="link-contrast">Mobile</a></li>
+                <li><a href="" class="link-contrast">Terms &amp; Privacy</a></li>
+            </ul>
+        </div>
+
+        <hr class="footer-divider space-top-3 space-4 hide-sm"></hr>
+
+        <div class="text-center">
+            <h2 class="h5 space-4 hide-sm">Follow Sport Store</h2>
+            <ul class="list-layout list-inline">
+                <li>
+                    <a href="" class="link-contrast footer-icon-container" itemprop="sameAs" target="_blank">
+                        <span class="screen-reader-only">Facebook</span>
+                        <i class="icon footer-icon icon-facebook"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="link-contrast footer-icon-container" itemprop="sameAs" target="_blank">
+                        <span class="screen-reader-only">Twitter</span>
+                        <i class="icon footer-icon icon-twitter"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="link-contrast footer-icon-container" itemprop="sameAs" target="_blank">
+                        <span class="screen-reader-only">YouTube</span>
+                        <i class="icon footer-icon icon-youtube"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="link-contrast footer-icon-container" itemprop="sameAs" target="_blank">
+                        <span class="screen-reader-only">Instagram</span>
+                        <i class="icon footer-icon icon-instagram"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="link-contrast footer-icon-container" itemprop="sameAs" target="_blank">
+                        <span class="screen-reader-only">VK</span>
+                        <i class="icon footer-icon icon-vk"></i>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="space-top-2 text-muted">&copy; Online Auction, Inc.</div>
+
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
+
+
